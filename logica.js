@@ -34,34 +34,37 @@ btn.onclick = function(){
             ajax.readyState -> 3 carregando corpo da requisição /corpo dos dados
             ajax.readyState -> 4 O conteudo está pronto pra uso
         */
-        if(ajax.readyState === 4){
-
-            if(ajax.status = 200){
-
-                //transforma JSON para array
-                usuario = JSON.parse(ajax.responseText);
-
-
-                // se usuário possui nome
-                if(usuario['name'] !== null){
-                    txtNome = document.createTextNode(usuario['name']);
-
-                    let img = document.createElement('img');
-                    img.setAttribute('src', usuario['avatar_url']);
-                    img.setAttribute('alt', usuario['name']);
-                    img.setAttribute('width', '45px');
-                    img.setAttribute('height', '45px');
-
-                    div.appendChild(img);
-
-                }else{
-                    txtNome = document.createTextNode(`Não encontrei o usuário ${input.value}`);
-                
+            if(ajax.readyState === 4){
+                if(ajax.status === 200){
+                    // transformar os dados JSON para array
+                    usuario = JSON.parse(ajax.responseText);
+    
+                    // Se o usuário possui nome
+                    if(usuario['name'] !== null){
+                        txtNome = document.createTextNode(usuario['name']);
+    
+                        let img = document.createElement('img');
+                        img.setAttribute('src', usuario['avatar_url']);
+                        img.setAttribute('alt', usuario['name']);
+                        img.setAttribute('width', '45px');
+                        img.setAttribute('height', '45px');
+    
+                        div.appendChild(img);
+                    }else{
+                    txtNome = document.createTextNode(`O usuário ${input.value} não tem nome.`);
                 }
-                //Adicionar o texto ao span e a span a div
+                // Adiciona o texto ao span e o span à div
                 spanNone.appendChild(txtNome);
                 div.appendChild(spanNone);
 
+                // Limpar o input
+                input.value = '';
+
+            }else{
+                txtNome = document.createTextNode(`Não encontrei o usuário ${input.value}`);
+                // Adiciona o texto ao span e o span à div
+                spanNone.appendChild(txtNome);
+                div.appendChild(spanNone);
             }
         }
     }
