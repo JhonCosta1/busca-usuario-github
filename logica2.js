@@ -5,7 +5,7 @@ let promise = function(){
     return new Promise(function(resolve, reject){
         let github_user = document.querySelector('input[name=github_user]').value;
         let ajax = new XMLHttpRequest();
-        ajax.dispatchEvent('GET', `https://api.github.com/users/${github_user}`);
+        ajax.open('GET', `https://api.github.com/users/${github_user}`);
         ajax.send(null);
 
         ajax.onreadystatechange = function(){
@@ -38,7 +38,7 @@ btn.onclick = function(){
             //Se o usuário tem nome
 
             if(response['name'] !== null){
-                txtNome = document.createTextNode(response['nome']);
+                txtNome = document.createTextNode(response['name']);
 
                 let img = document.createElement('img');
                 img.setAttribute('src', response['avatar_url']);
