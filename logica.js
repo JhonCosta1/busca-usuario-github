@@ -5,14 +5,15 @@ let div = document.querySelector('#app');
 
 btn.onclick = function(){
     //Limpar o conteúdo da div
-    div.innerHTML.html = '';
+    div.innerHTML = '';
 
     //Instanciando objeto AJAX
 
     let ajax = new XMLHttpRequest();
 
     //Abrir uma conexão / ajax.readyState -> 0 antes da conexão ser aberta
-    ajax.open('GET', `https://api.github.com/users/${github_user}`);
+    ajax.open('GET', `https://api.github.com/users/${input.value}`);
+
 
     //Enviar a requisição / ajax.readyState -> 1 após abrir a conexão
     ajax.send(null);
@@ -53,7 +54,14 @@ btn.onclick = function(){
 
                     div.appendChild(img);
 
+                }else{
+                    txtNome = document.createTextNode(`Não encontrei o usuário ${input.value}`);
+                
                 }
+                //Adicionar o texto ao span e a span a div
+                spanNone.appendChild(txtNome);
+                div.appendChild(spanNone);
+
             }
         }
     }
