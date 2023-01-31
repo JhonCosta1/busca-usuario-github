@@ -10,3 +10,6 @@
  <li>CSS3</li>
  <li>BOOTSTRAP</li>
 </ul>
+
+<p>Segue deploy do projeto</p>
+<a class="nav-link" href="https://busca-usuario-github.vercel.app/">Clique para DEPLOY</a>
